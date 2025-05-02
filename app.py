@@ -196,8 +196,8 @@ def generate_svg(symbols):
     {svg_style}
     """
     
-    # Définir un léger padding à gauche
-    start_x = 10
+    # Calculer l'offset pour centrer les éléments
+    start_x = (total_width - ((box_width + margin) * len(symbols) - margin)) / 2
     
     for i, symbol in enumerate(symbols):
         x = start_x + i * (box_width + margin)

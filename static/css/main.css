@@ -169,10 +169,10 @@ button:hover {
 .svg-container {
   position: relative;
   margin: 2rem 0;
-  padding: 2rem 0;
+  padding: 1rem 0;
   background-color: var(--color-gray-100);
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   overflow-x: auto;
   max-width: 100%;
@@ -183,6 +183,7 @@ button:hover {
 
 .svg-container svg {
   display: block;
+  margin: 0 auto;
   min-width: auto !important;
   height: auto !important;
 }
