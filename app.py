@@ -229,6 +229,20 @@ def generate_svg(symbols):
     svg += "</svg>"
     return svg
 
+# Fonction principale pour gérer les requêtes depuis Vercel
+def handle_request(request):
+    if request.method == 'POST':
+        name = request.form.get('name', '')
+        combinations = find_combinations(name)
+        
+        if combinations:
+            # Utiliser la première combinaison trouvée
+            result = combinations[0]
+            svg = generate_svg(result)
+            return render_template('index.html', name=name, result=result, svg=svg, combinations=combinations)
+    
+    return render_template('index.html', name="", result=None, svg="", combinations=[])
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     result = None
@@ -246,6 +260,9 @@ def index():
             svg = generate_svg(result)
     
     return render_template('index.html', name=name, result=result, svg=svg, combinations=combinations)
+
+# Point d'entrée pour Vercel
+app.wsgi_app = handle_request
 
 @app.route('/download-svg', methods=['POST'])
 def download_svg():
